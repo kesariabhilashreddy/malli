@@ -1,0 +1,28 @@
+terraform 
+provider "aws" {
+region = "ap-south-1"
+access_key = "kfjndk;fnngfkjljdfbg654684"
+secret_key = "dfkjfbkeebfnenf65414946516"
+}
+resource "aws_vpc" "vpc"{
+cidr_block = "10.0.0.0/16"
+tags = {
+   Name = "myvpc"
+   }
+}
+resource "aws_subnet" "subnet" {
+vpc_id = aws_vpc.myvpc.id
+cidr_block = "10.0.1.0/24"
+tags= {
+   Name = "mysubnet"
+   }
+}
+resource "aws_instance" "test instance"{
+ami = "ami-dfkbkbf68464"
+key-name= "us"
+instance_type = "t2.micro"
+tags = {
+  Name = "testinstance"
+  }
+}
+
