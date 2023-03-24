@@ -1,0 +1,31 @@
+
+sudo yum install git
+sudo yum update -y
+sudo yum install docker -y
+sudo systemctl start docker 
+sudo systemctl enable docker 
+sudo systemctl status docker
+sudo usermod -aG docker ec2-user
+sudo reboot
+docker ps -a
+docker images
+docker run -it web1 --name web1 nginx /bin/bash
+docker run -dit -v mycls:/var/www/html/ -p 91:80 web2 nginx /bin/bash
+docker start web2
+docker exec -t web2 /bin/bash
+docker ps -a
+exit
+docker ps -a
+docker stats
+docker run -dit -v myown:/var/www/html/ -memory:"1g" -p 92:80 --name web3 nginx /bin/bash
+docker ps 
+docker images
+docker stop web3 
+ rm web3
+rmi nginx
+docker system prune -a 
+docker export web3 test.tar
+docker import test.tar > image:v1
+docker commit 
+docker attach web3
+
